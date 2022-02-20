@@ -104,18 +104,35 @@ namespace ToDoList
             {
                 if ((tasksListBox.CheckedItems[i] as Task).IsDone)
                 {
-                    (tasksListBox.CheckedItems[i] as Task).IsDone = true;
+                    (tasksListBox.CheckedItems[i] as Task).IsDone = false;
                     continue;
                 }
-                (tasksListBox.CheckedItems[i] as Task).IsDone = false;
+                (tasksListBox.CheckedItems[i] as Task).IsDone = true;
             }
         }
 
         private void removeButton_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < tasksListBox.CheckedItems.Count; i++)
+            int count = tasksListBox.CheckedItems.Count;
+            for (int i = 0; i < count; i++)
             {
-                tasksListBox.Items.Remove(tasksListBox.CheckedItems[i]);
+                tasksListBox.Items.Remove(tasksListBox.CheckedItems[0]);
+                if (tasksListBox.Items.Count < 10)
+                {
+                    BackGroundPanel.Size -= new Size(0, 21);
+                    tasksListBox.Size -= new Size(0, 21);
+                    doneButton.Location -= new Size(0, 21);
+                    removeButton.Location -= new Size(0, 21);
+                    editButton.Location -= new Size(0, 21);
+                    if (tasksListBox.Items.Count == 0)
+                    {
+                        doneButton.Visible = false;
+                        editButton.Visible = false;
+                        removeButton.Visible = false;
+                        continue;
+                    }
+                }
+                
             }
         }
     }

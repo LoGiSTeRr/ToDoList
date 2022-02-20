@@ -12,7 +12,7 @@
             string r = $"{Name}, p: {PriorityType}, date: {date.ToShortDateString()}";
             if (IsDone)
             {
-                r.Insert(0, "[Done]");
+                r = r.Insert(0, "[Done]");
             }
             return r;
         }
