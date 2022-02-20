@@ -1,10 +1,12 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using System.Linq;
 
 namespace ToDoList
 {
-    public static class ObjectCollectionExtensions
+    public static class MyExtensions
     {
-        public static void SortByPriority(this ListBox.ObjectCollection list)
+        public static void SortByPriority(this BindingList<Task> list)
         {
             int i, j;
             int N = list.Count;
@@ -13,7 +15,7 @@ namespace ToDoList
             {
                 for (i = 0; i < j; i++)
                 {
-                    if ((list[i] as Task).PriorityType < (list[i + 1] as Task).PriorityType)
+                    if (list[i].PriorityType < list[i + 1].PriorityType)
                     {
                         (list[i], list[i + 1]) = (list[i + 1], list[i]);
                     }

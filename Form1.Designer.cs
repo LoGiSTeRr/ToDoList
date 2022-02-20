@@ -38,6 +38,7 @@ namespace ToDoList
             this.addTaskButton = new System.Windows.Forms.Button();
             this.textBoxToDo = new System.Windows.Forms.TextBox();
             this.panelEditTask = new System.Windows.Forms.Panel();
+            this.saveButton = new System.Windows.Forms.Button();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.priorityBoxPicker = new System.Windows.Forms.ComboBox();
@@ -47,7 +48,7 @@ namespace ToDoList
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.saveButton = new System.Windows.Forms.Button();
+            this.urgentCheckBox = new System.Windows.Forms.CheckBox();
             this.BackGroundPanel.SuspendLayout();
             this.panelEditTask.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +60,7 @@ namespace ToDoList
             this.label1.ForeColor = System.Drawing.SystemColors.WindowText;
             this.label1.Location = new System.Drawing.Point(140, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 32);
+            this.label1.Size = new System.Drawing.Size(135, 32);
             this.label1.TabIndex = 0;
             this.label1.Text = "TODOLIST";
             // 
@@ -122,8 +123,11 @@ namespace ToDoList
             // 
             // tasksListBox
             // 
+            this.tasksListBox.AllowDrop = true;
+            this.tasksListBox.CheckOnClick = true;
             this.tasksListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.tasksListBox.FormattingEnabled = true;
+            this.tasksListBox.HorizontalScrollbar = true;
             this.tasksListBox.Location = new System.Drawing.Point(22, 90);
             this.tasksListBox.Name = "tasksListBox";
             this.tasksListBox.Size = new System.Drawing.Size(356, 4);
@@ -158,6 +162,7 @@ namespace ToDoList
             // panelEditTask
             // 
             this.panelEditTask.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.panelEditTask.Controls.Add(this.urgentCheckBox);
             this.panelEditTask.Controls.Add(this.saveButton);
             this.panelEditTask.Controls.Add(this.dateTimePicker);
             this.panelEditTask.Controls.Add(this.label6);
@@ -173,6 +178,19 @@ namespace ToDoList
             this.panelEditTask.Size = new System.Drawing.Size(570, 210);
             this.panelEditTask.TabIndex = 2;
             this.panelEditTask.Visible = false;
+            // 
+            // saveButton
+            // 
+            this.saveButton.BackColor = System.Drawing.Color.OliveDrab;
+            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.saveButton.ForeColor = System.Drawing.Color.White;
+            this.saveButton.Location = new System.Drawing.Point(461, 158);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(81, 35);
+            this.saveButton.TabIndex = 7;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = false;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // dateTimePicker
             // 
@@ -270,18 +288,16 @@ namespace ToDoList
             this.label2.TabIndex = 7;
             this.label2.Text = "Task Settings";
             // 
-            // saveButton
+            // urgentCheckBox
             // 
-            this.saveButton.BackColor = System.Drawing.Color.OliveDrab;
-            this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
-            this.saveButton.ForeColor = System.Drawing.Color.White;
-            this.saveButton.Location = new System.Drawing.Point(461, 158);
-            this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(81, 35);
-            this.saveButton.TabIndex = 7;
-            this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = false;
-            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.urgentCheckBox.AutoSize = true;
+            this.urgentCheckBox.Font = new System.Drawing.Font("Consolas", 13.25F, System.Drawing.FontStyle.Bold);
+            this.urgentCheckBox.Location = new System.Drawing.Point(320, 163);
+            this.urgentCheckBox.Name = "urgentCheckBox";
+            this.urgentCheckBox.Size = new System.Drawing.Size(99, 26);
+            this.urgentCheckBox.TabIndex = 16;
+            this.urgentCheckBox.Text = "Urgent?";
+            this.urgentCheckBox.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -291,8 +307,11 @@ namespace ToDoList
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.panelEditTask);
             this.Controls.Add(this.BackGroundPanel);
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ToDoList";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.BackGroundPanel.ResumeLayout(false);
             this.BackGroundPanel.PerformLayout();
             this.panelEditTask.ResumeLayout(false);
@@ -322,6 +341,7 @@ namespace ToDoList
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button saveButton;
+        private System.Windows.Forms.CheckBox urgentCheckBox;
     }
 }
 
