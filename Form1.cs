@@ -84,6 +84,7 @@ namespace ToDoList
                     break;
             }
             tasks[index].Date = dateTimePicker.Value;
+            tasks[index].IsUrgent = urgentCheckBox.Checked;
             panelEditTask.Visible = false;
             BackGroundPanel.Enabled = true;
             tasks.SortByPriority();
@@ -103,6 +104,7 @@ namespace ToDoList
             descriptionBox.Text = tasks[index].Description;
             priorityBoxPicker.Text = tasks[index].PriorityType.ToString();
             dateTimePicker.Value = tasks[index].Date;
+            urgentCheckBox.Checked = tasks[index].IsUrgent;
         }
 
         private void doneButton_Click(object sender, EventArgs e)
@@ -152,7 +154,14 @@ namespace ToDoList
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            tasks = JsonConvert.DeserializeObject<BindingList<Task>>(File.ReadAllText("savedTasks.json")) ?? new BindingList<Task>();
+            try
+            {
+                tasks = JsonConvert.DeserializeObject<BindingList<Task>>(File.ReadAllText("savedTasks.json")) ?? new BindingList<Task>();
+            }
+            catch (FileNotFoundException)
+            {
+                tasks = new BindingList<Task>();
+            }
             tasksListBox.DataSource = tasks;
             if (tasks.Count != 0)
             {
